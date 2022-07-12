@@ -1,0 +1,73 @@
+(define (domain puzzle)
+  (:requirements :strips :typing)
+  (:types 
+  num 
+  loc
+  ) 
+  (:predicates  (num ?x)            
+                (loc ?x)                  
+                (at-loc ?x ?y)          
+                (blank ?x)          
+                (left ?x ?y)                
+                (right ?x ?y)                
+                (up ?x ?y)                  
+                (down ?x ?y)                
+                )
+
+(:action slide-left
+             :parameters (?x ?y ?z) 
+             :precondition (and 
+                              (blank ?x)
+                              (at-loc ?y ?z)
+                              (right ?x ?z)
+                          )
+             :effect (and
+                        (not (at-loc ?y ?z))
+                        (at-loc ?y ?x)
+                        (not (blank ?x))
+                        (blank ?z)
+             ) 
+ )
+(:action slide-right
+             :parameters (?x ?y ?z)
+             :precondition (and 
+                              (blank ?x) 
+                              (at-loc ?y ?z)
+                              (left ?x ?z)
+                          )
+             :effect (and
+                        (not (at-loc ?y ?z))
+                        (at-loc ?y ?x)
+                        (not (blank ?x))
+                        (blank ?z)
+             ) 
+ )
+(:action slide-up
+             :parameters (?x ?y ?z)
+             :precondition (and 
+                              (blank ?x)
+                              (at-loc ?y ?z)
+                              (down ?x ?z)
+                          )
+             :effect (and
+                        (not (at-loc ?y ?z))
+                        (at-loc ?y ?x)
+                        (not (blank ?x))
+                        (blank ?z)
+             ) 
+ )
+(:action slide-down
+             :parameters (?x ?y ?z) 
+             :precondition (and 
+                              (blank ?x)
+                              (at-loc ?y ?z)
+                              (up ?x ?z)
+                          )
+             :effect (and
+                        (not (at-loc ?y ?z))
+                        (at-loc ?y ?x)
+                        (not (blank ?x))
+                        (blank ?z)
+             ) 
+ )
+)
