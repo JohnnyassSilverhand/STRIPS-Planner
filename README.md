@@ -1,0 +1,1 @@
+# STRIPS-Planner
